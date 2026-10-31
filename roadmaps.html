@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAGE | Career Roadmaps</title>
+<style>
+:root{--green:#687858;--dark:#26352b;--sage:#aab69a;--pale:#e8ede3;--bg:#f7f8f6;--white:#fff;--text:#343a35;--muted:#68716a;--line:#d7ded2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+header{background:#fff;border-bottom:1px solid var(--line);padding:17px 6%;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.45rem;letter-spacing:1px;color:var(--dark)}.brand span{color:var(--green)}
+nav{display:flex;gap:17px;flex-wrap:wrap}nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:.94rem}nav a:hover{color:var(--green)}
+.hero{background:var(--pale);padding:48px 6% 40px;border-bottom:1px solid var(--line)}.eyebrow{color:var(--green);font-size:.78rem;font-weight:800;letter-spacing:1.4px;text-transform:uppercase}
+h1{font-size:clamp(2rem,4vw,3rem);line-height:1.15;color:var(--dark);margin:9px 0}.hero p{max-width:760px;margin:10px 0 0;color:#505a51}
+main{width:min(1180px,90%);margin:30px auto 60px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+input,select{font:inherit;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--text);outline:none}
+input{flex:1;min-width:230px}select{min-width:190px}input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #aab69a40}
+.meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;margin:12px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;box-shadow:0 2px 8px #26352b0a}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.card h2{font-size:1.13rem;color:var(--dark);line-height:1.3;margin:0 0 6px}
+.tag{font-size:.74rem;font-weight:800;color:var(--green);background:var(--pale);padding:4px 8px;border-radius:5px;white-space:nowrap}
+.card p{font-size:.91rem;color:var(--muted);margin:8px 0 12px}.subjects{font-size:.83rem;color:#566257;margin:8px 0 13px}
+details{border-top:1px solid var(--line);padding-top:11px}summary{cursor:pointer;color:var(--green);font-weight:800}
+.steps{list-style:none;padding:0;margin:14px 0 0}.steps li{position:relative;padding:0 0 15px 27px}.steps li:before{content:"";position:absolute;left:4px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--sage);border:2px solid var(--green)}
+.steps li:not(:last-child):after{content:"";position:absolute;left:10px;top:20px;bottom:0;width:2px;background:var(--line)}
+.steps strong{display:block;color:var(--dark);font-size:.91rem}.steps span{display:block;color:var(--muted);font-size:.87rem}
+.note{margin-top:22px;padding:14px 16px;background:#fff;border-left:4px solid var(--green);border-radius:6px;color:var(--muted);font-size:.88rem}
+.empty{display:none;padding:28px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:9px;color:var(--muted)}
+footer{text-align:center;padding:22px;background:#fff;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+@media(max-width:720px){header{padding:15px 5%}.hero{padding:36px 5% 30px}.grid{grid-template-columns:1fr}main{width:90%}nav{gap:11px}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="index.html" style="text-decoration:none">SAGE<span>.</span></a>
+  <nav aria-label="Main navigation">
+    <a href="index.html">Home</a><a href="quiz.html">Career Quiz</a><a href="careers.html">Careers</a>
+    <a href="universities.html">Universities</a><a href="compare.html">Compare Careers</a><a href="blog.html">Blog</a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="eyebrow">Explore • Plan • Grow</div>
+  <h1>Career Roadmaps</h1>
+  <p>Find a step-by-step route for every career in the SAGE Career Library. Search by career or subject, choose a field, and open a roadmap to explore study options, skills, experience and possible next steps.</p>
+</section>
+<main>
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search any career, field or subject..." aria-label="Search roadmaps">
+    <select id="fieldFilter" aria-label="Filter by career field"><option value="all">All career fields</option></select>
+  </div>
+  <div class="meta"><span id="count">Loading careers from the SAGE Career Library…</span><span>Open any card to view its roadmap</span></div>
+  <section class="grid" id="roadmapGrid"></section>
+  <div class="empty" id="emptyState">No careers match your search. Try another career name or field.</div>
+  <div class="note"><strong>Guidance note:</strong> These are broad planning roadmaps. Exact subjects, entrance tests, course names, professional registration and eligibility can vary by institution and change over time. Check current requirements with official universities and professional bodies before making decisions.</div>
+</main>
+<footer>SAGE · Seek · Aspire · Grow · Explore</footer>
+
+<!-- Keep data.js in the same GitHub folder as this file. -->
+<script src="data.js"></script>
+<script>
+(function(){
+  const search=document.getElementById('search');
+  const filter=document.getElementById('fieldFilter');
+  const grid=document.getElementById('roadmapGrid');
+  const count=document.getElementById('count');
+  const empty=document.getElementById('emptyState');
+
+  // data.js defines the same "careers" array used by the SAGE career library.
+  const source=typeof careers!=='undefined' ? careers : [];
+  const allCareers=[...new Map(source.map(c=>[String(c.name||'').trim().toLowerCase(),c])).values()]
+    .filter(c=>c.name);
+
+  if(!allCareers.length){
+    count.textContent='Career data could not be loaded.';
+    empty.style.display='block';
+    empty.textContent='Make sure data.js is uploaded to the same folder as roadmaps.html, then refresh the page.';
+    return;
+  }
+
+  const fields=[...new Set(allCareers.map(c=>c.field||'Other').filter(Boolean))].sort((a,b)=>a.localeCompare(b));
+  fields.forEach(field=>{const option=document.createElement('option');option.value=field;option.textContent=field;filter.appendChild(option)});
+
+  function pathwayFor(c){
+    const name=c.name.toLowerCase(), field=(c.field||'').toLowerCase(), subjects=c.subjects||'relevant subjects';
+    let degree='Choose a recognised undergraduate programme related to '+c.name+'. Check the course structure, eligibility and admission process at each institution.';
+    let prep='Build a strong foundation in '+subjects+'. Explore the subject through school projects, reading and introductory learning resources.';
+    let skills='Develop the core knowledge for '+c.name+', communication, digital literacy, teamwork and ethical decision-making.';
+    let experience='Build a small portfolio of relevant projects, participate in supervised activities, and seek suitable internships or practical exposure when eligible.';
+    let next='Explore entry-level roles related to '+c.name+', then consider advanced study or a specialisation as your interests develop.';
+
+    if(/doctor|physician|surgeon|dentist/.test(name)){
+      degree='For a doctor, the usual Indian route is Class 11–12 with Physics, Chemistry and Biology, qualifying NEET-UG, then MBBS and the required internship and registration. Dentistry generally follows BDS admission through the applicable NEET process.';
+      prep='Focus on Biology, Chemistry and Physics in school. Check the latest eligibility and entrance-exam information from official authorities.';
+      skills='Develop scientific understanding, careful observation, communication, empathy and professional ethics.';
+      experience='Learn about healthcare through age-appropriate volunteering or career events. Clinical training takes place only through the formal programme.';
+      next='After the qualifying degree and required registration, explore general practice or eligible postgraduate specialisation routes.';
+    } else if(/nurs|paramedic|radiograph|physiotherap|occupational therap|speech-language|speech and language|medical laboratory|clinical research|public health|epidemiolog|pharmacist|nutritionist|dietitian|genetic counsel|medical physicist|health informatics|clinical psych/.test(name)){
+      degree='Explore the recognised degree or diploma specific to this profession (for example Nursing, Physiotherapy, Pharmacy, Allied Health, Psychology or Public Health). Check regulator recognition, subject requirements and clinical placement details.';
+      prep='Build a foundation in the relevant Biology, Chemistry, Physics, Mathematics or Psychology subjects listed for this career.';
+      skills='Develop subject knowledge, communication, accurate documentation, teamwork and professional ethics.';
+      experience='Complete the supervised practical, laboratory or clinical placements required by the recognised course.';
+      next='Meet the applicable registration or licensing requirements, then explore entry-level practice, research or postgraduate study.';
+    } else if(/chartered account|accountant|auditor|tax consultant|actuary/.test(name)){
+      degree='Consider Commerce, Accounting, Finance, Economics, Mathematics or Statistics. For Chartered Accountancy in India, follow the current ICAI course route and examination requirements; other accounting roles may have different qualifications.';
+      prep='Strengthen Mathematics, accounting basics, economics, business studies and clear written communication.';
+      skills='Develop financial reporting, spreadsheet, analytical, accuracy, confidentiality and ethical skills.';
+      experience='Practise with sample accounts and spreadsheets; pursue structured practical training or internships only through appropriate programmes.';
+      next='Progress towards professional certification or specialist areas such as audit, taxation, risk or financial analysis.';
+    } else if(/lawyer|law |legal|patent|mediator/.test(name)){
+      degree='Consider a recognised five-year integrated law degree after Class 12 or a law degree after an undergraduate degree. Check current university entrance and Bar Council requirements.';
+      prep='Build reading, writing, logical reasoning, social-science knowledge and current-affairs awareness.';
+      skills='Develop legal research, argument, drafting, negotiation and professional ethics.';
+      experience='Take part in debates, moots, supervised legal-aid learning and permitted internships during the course.';
+      next='Meet applicable enrolment and qualification rules, then explore advocacy, legal research, policy or corporate legal work.';
+    } else if(/teacher|educator|librarian|school counselor|school counsellor|instructional|learning experience|speech and debate coach/.test(name)){
+      degree='Choose a degree in the subject or education area, followed by the teacher-training or specialist qualification required for the role. Requirements differ by school level and profession.';
+      prep='Strengthen your chosen subject, communication, reading and digital learning skills.';
+      skills='Develop lesson planning, explaining ideas, inclusive practice, assessment and communication.';
+      experience='Gain supervised teaching or training practice through the recognised programme.';
+      next='Meet the relevant eligibility tests or registration requirements and consider specialist or leadership roles.';
+    } else if(/architect|interior|landscape architect|urban planner|civil planner/.test(name)){
+      degree='Explore recognised programmes such as B.Arch, planning, landscape architecture or interior design, depending on the exact role. Verify current admission requirements and professional recognition.';
+      prep='Build Mathematics where required, drawing, design awareness, geography and spatial reasoning.';
+      skills='Develop design thinking, drafting/CAD, visual communication, sustainability and project coordination.';
+      experience='Create design projects and complete the studio work, site exposure or internships included in your programme.';
+      next='Meet any required registration rules and build a portfolio for practice, planning or specialist design work.';
+    } else if(/engineer|technician/.test(name)){
+      degree='Consider a relevant B.E./B.Tech, B.Sc. or recognised diploma in the subject area. The best route depends on the engineering specialisation and current admission rules.';
+      prep='Strengthen Mathematics and the relevant science subjects, especially '+subjects+'.';
+      skills='Develop technical fundamentals, design, problem-solving, digital tools, safety and teamwork.';
+      experience='Build practical projects, laboratory experience and supervised internships; document what you design or test.';
+      next='Start in a graduate or technician role, build domain experience and consider advanced study or professional certifications.';
+    } else if(/software|developer|data |data$|artificial intelligence|ai |cyber|cloud|network|database|devops|site reliability|machine learning|gis developer|technical support|seo specialist|accessibility specialist|computer hardware|embedded|robotics|information|computational linguist/.test(name) || field.includes('technology')){
+      degree='Consider Computer Science, Information Technology, Data Science, Statistics, Electronics or another degree aligned with the role. Some roles also value a strong project portfolio alongside formal study.';
+      prep='Build Mathematics, logical reasoning and computer skills. Start with beginner-friendly programming or digital projects.';
+      skills='Develop role-specific tools, programming or data skills, problem-solving, cybersecurity awareness and clear documentation.';
+      experience='Create original projects, publish a portfolio, collaborate on team projects and seek suitable internships when eligible.';
+      next='Apply for junior roles related to '+c.name+' and continue learning as tools and technologies evolve.';
+    } else if(/designer|illustrator|animator|artist|photograph|filmmaker|video editor|actor|choreograph|music|sound engineer|art director|stylist/.test(name) || field.includes('design') || field.includes('arts') || field.includes('media')){
+      degree='Explore a recognised degree, diploma or portfolio-based programme in the relevant creative field. Compare course projects, facilities, faculty and portfolio or audition requirements.';
+      prep='Practise the relevant creative subject and study examples of professional work. Build confidence in presenting your ideas.';
+      skills='Develop creative technique, digital tools, visual or audio storytelling, feedback skills and project management.';
+      experience='Build a portfolio or showreel with original work, take part in school or community projects and seek supervised industry exposure.';
+      next='Apply for junior creative roles, freelance opportunities where appropriate, or further specialisation.';
+    } else if(/journal|writer|editor|translator|copywriter|content|public relations|podcast|science communicator/.test(name)){
+      degree='Consider a degree in English, Journalism, Media, Languages, Communication or the subject area you want to write about. Check role-specific course expectations.';
+      prep='Strengthen language skills, reading, research, media awareness and the ability to check sources.';
+      skills='Develop writing, editing, interviewing, fact-checking, storytelling and digital publishing skills.';
+      experience='Create a writing portfolio, contribute to student publications and practise responsible, accurate communication.';
+      next='Explore entry-level writing, editing, media or communication roles and develop a subject specialism.';
+    } else if(/chef|baker|hotel|travel|tour guide|event planner|hospitality/.test(name) || field.includes('hospitality')){
+      degree='Explore recognised hospitality, culinary arts, tourism, event management or travel programmes. Compare practical training, placements and course recognition.';
+      prep='Build communication, numeracy, language, organisation and customer-service skills.';
+      skills='Develop role-specific practical skills, teamwork, planning, safety and service standards.';
+      experience='Practise through supervised school or training projects and approved work placements as appropriate.';
+      next='Begin in an entry-level role and progress through experience, further training and specialisation.';
+    } else if(/police|firefighter|civil services|diplomat|policy|public service|community development|grant writer/.test(name) || field.includes('public service')){
+      degree='Choose a suitable degree related to the role, such as Public Administration, Political Science, Law, Social Sciences or another relevant subject. For government services, check the official recruitment and examination rules.';
+      prep='Build general knowledge, language, reasoning, relevant social-science subjects and fitness where the role requires it.';
+      skills='Develop communication, analysis, public-service values, teamwork and knowledge of relevant rules.';
+      experience='Join age-appropriate community projects, research activities, debates or public-speaking opportunities.';
+      next='Prepare for the relevant official recruitment, professional qualification or postgraduate route.';
+    } else if(/sport|fitness|coach|physiolog/.test(name) || field.includes('sports')){
+      degree='Explore Sports Science, Physical Education, Coaching, Physiotherapy or another recognised programme that fits the role.';
+      prep='Build a foundation in Biology, physical education, Mathematics and the sport or activity you are interested in.';
+      skills='Develop safe coaching practice, anatomy and movement knowledge, communication and performance analysis.';
+      experience='Participate in supervised sports programmes, coaching practice and relevant practical placements.';
+      next='Meet any required coaching or professional certifications and progress into specialist or leadership roles.';
+    } else if(/biolog|chemist|physic|scientist|research|microbi|genetic|bioinformatic|forensic|geologist|meteorolog|astronom|food technologist|soil scientist|hydrologist|statistician/.test(name) || field.includes('science')){
+      degree='Consider a relevant B.Sc. or integrated science programme in the subject area, followed by M.Sc. or research study if required for the role.';
+      prep='Strengthen the relevant science subjects and Mathematics or Statistics. Practise asking questions and interpreting evidence.';
+      skills='Develop laboratory or field methods, data analysis, research writing, safety and scientific ethics.';
+      experience='Take part in supervised science projects, laboratory work, field studies or research internships when eligible.';
+      next='Explore technician, analyst or research-assistant roles, then consider postgraduate study for specialist research careers.';
+    } else if(/environment|climate|conservation|wildlife|agricultur|marine|sustainab|water quality|ecolog|horticultur|plant path|fisheries|food systems|irrigation|waste management|carbon accounting/.test(name) || field.includes('environment') || field.includes('agriculture')){
+      degree='Consider Environmental Science, Biology, Agriculture, Geography, Ecology, Earth Science or a related programme that matches the specialism.';
+      prep='Build Biology, Geography, Chemistry, Mathematics and awareness of environmental systems as relevant to the role.';
+      skills='Develop research, field or laboratory methods, data interpretation, sustainability knowledge and communication.';
+      experience='Join supervised field projects, conservation or agriculture activities, science fairs and suitable internships.';
+      next='Explore entry-level research, analyst, project or field roles and consider postgraduate specialisation.';
+    } else if(/business|manager|analyst|marketing|human resources|investment|financial|banking|economist|procurement|supply chain|logistics|retail|risk|compliance|real estate|customer success|entrepreneur/.test(name) || field.includes('business')){
+      degree='Consider Business Administration, Commerce, Economics, Finance, Marketing, Statistics or a related degree based on the role. Some careers value professional qualifications or postgraduate study.';
+      prep='Build Mathematics, communication, economics, business awareness and digital skills.';
+      skills='Develop analysis, teamwork, presentation, planning, spreadsheets and ethical decision-making.';
+      experience='Work on case studies, student enterprise or research projects, and suitable internships when eligible.';
+      next='Begin in an entry-level role related to '+c.name+', then build experience or pursue a specialist qualification.';
+    } else {
+      degree='Explore a recognised undergraduate degree or diploma related to '+c.name+'. Compare course content, eligibility, practical training and professional recognition.';
+    }
+
+    return [
+      ['1. Explore in school',prep],
+      ['2. Choose a course after Class 12',degree],
+      ['3. Build essential skills',skills],
+      ['4. Get practical exposure',experience],
+      ['5. Start your career and grow',next]
+    ];
+  }
+
+  function makeCard(c){
+    const card=document.createElement('article');card.className='card';
+    const head=document.createElement('div');head.className='card-head';
+    const title=document.createElement('h2');title.textContent=c.name;
+    const tag=document.createElement('span');tag.className='tag';tag.textContent=c.field||'Career';
+    const titleWrap=document.createElement('div');titleWrap.appendChild(title);head.append(titleWrap,tag);card.appendChild(head);
+    const about=document.createElement('p');about.textContent=c.about||'Explore the study and skill pathway for this career.';card.appendChild(about);
+    const subjects=document.createElement('div');subjects.className='subjects';subjects.textContent='Useful subjects: '+(c.subjects||'Check course requirements');card.appendChild(subjects);
+    const details=document.createElement('details');const summary=document.createElement('summary');summary.textContent='View full roadmap';details.appendChild(summary);
+    const list=document.createElement('ol');list.className='steps';
+    pathwayFor(c).forEach(step=>{const li=document.createElement('li');const strong=document.createElement('strong');strong.textContent=step[0];const span=document.createElement('span');span.textContent=step[1];li.append(strong,span);list.appendChild(li)});
+    details.appendChild(list);card.appendChild(details);return card;
+  }
+
+  function render(){
+    const term=search.value.trim().toLowerCase(),field=filter.value;
+    const matches=allCareers.filter(c=>{
+      const text=[c.name,c.field,c.subjects,c.about,c.fit].join(' ').toLowerCase();
+      return text.includes(term)&&(field==='all'||c.field===field);
+    });
+    grid.replaceChildren(...matches.map(makeCard));
+    count.textContent=`Showing ${matches.length} of ${allCareers.length} careers from your SAGE Career Library`;
+    empty.style.display=matches.length?'none':'block';
+  }
+  search.addEventListener('input',render);filter.addEventListener('change',render);render();
+})();
+</script>
+</body>
+</html>
