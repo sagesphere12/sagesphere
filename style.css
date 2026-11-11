@@ -353,3 +353,23 @@ button:hover {
     box-shadow: 0 5px 16px #2E3A2F10;
 }
 <body class="quiz-page">
+<body class="quiz-page">
+/* CAREER QUIZ - ORIGINAL CARD DESIGN */
+
+body.quiz-page .card,
+body.quiz-page .stat,
+body.quiz-page .detail-tile,
+body.quiz-page .box,
+body.quiz-page .panel {
+    background: #A3AB8F !important;
+    background-image: none !important;
+    border-radius: 16px !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+    transform: none !important;
+}
+
+body.quiz-page .card:hover,
+body.quiz-page .detail-tile:hover {
+    transform: none !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
