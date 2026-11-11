@@ -496,3 +496,5 @@ body.quiz-page .box:hover,
 body.quiz-page .panel:hover {
     box-shadow: none !important;
 }
+<body class="quiz-page">
+ 
