@@ -164,3 +164,74 @@ button:hover {
 .footer {
     background: #F7F8F2;
 }
+
+/* ===== SAGE PREMIUM GRADIENT CARD EFFECT ===== */
+
+/* Apply to all career and university cards */
+.card,
+.career-card,
+.university-card,
+.detail-tile,
+.career-details {
+    background: linear-gradient(
+        145deg,
+        #A3AB8F 0%,
+        #C9CEBA 48%,
+        #F3F3EA 100%
+    ) !important;
+
+    border: 1px solid #D8DED2 !important;
+    border-radius: 22px !important;
+
+    padding: 20px !important;
+
+    box-shadow: 0 8px 25px rgba(46, 58, 47, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+/* Smooth hover effect */
+.card:hover,
+.career-card:hover,
+.university-card:hover,
+.detail-tile:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 30px rgba(46, 58, 47, 0.13);
+}
+
+/* Card headings */
+.card h3,
+.career-card h3,
+.university-card h3,
+.detail-tile h2 {
+    color: #263128 !important;
+    font-weight: 800;
+}
+
+/* Card descriptions */
+.card p,
+.career-card p,
+.university-card p,
+.detail-tile p {
+    color: #354333 !important;
+    line-height: 1.7;
+}
+
+/* Keep links visible */
+.card a,
+.career-card a,
+.university-card a {
+    color: #526344 !important;
+}
+
+/* Responsive card spacing */
+@media (max-width: 760px) {
+    .card,
+    .career-card,
+    .university-card,
+    .detail-tile {
+        border-radius: 18px !important;
+        padding: 16px !important;
+    }
+}
