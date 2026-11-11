@@ -94,3 +94,73 @@ button:hover,.option:hover{background:#A3AB8F;border-color:#7A8063;color:#2E3A2F
 .field{background:#FFFFFF;color:#2E3A2F}
 .chathead,.compare-table th{background:#7A8063;color:#F7F6EF}
 @media(min-width:1100px){.wrap{width:min(1160px,90%)}.grid{gap:18px}.section{padding:42px 0}}
+
+/* ===== SAGE LIGHT THEME UPDATE ===== */
+
+/* Navigation bar */
+.top {
+    background: #DDE4D2 !important;
+    border-bottom: 1px solid #C5CEB9;
+}
+
+.links a {
+    color: #354333 !important;
+}
+
+.brand {
+    color: #667451 !important;
+}
+
+/* Main background */
+body {
+    background: #F7F8F2 !important;
+    color: #263128;
+}
+
+/* Careers and Universities main containers */
+.box {
+    background: #E9EEDF !important;
+    border: 1px solid #D5DDC9;
+}
+
+/* Career and university cards */
+.card,
+.stat,
+.detail-tile {
+    background: #F5F7EF !important;
+    border: 1px solid #D5DDC9;
+    color: #263128;
+}
+
+/* Card headings and descriptions */
+.card h3,
+.card p,
+.detail-tile h2,
+.detail-tile p {
+    color: #354333 !important;
+}
+
+/* Search bar and dropdown */
+.field {
+    background: #FFFFFF !important;
+    color: #263128;
+    border: 1px solid #D5DDC9;
+}
+
+/* Buttons */
+button,
+.button-link {
+    background: #7A8968;
+    border-color: #7A8968;
+    color: #FFFFFF;
+}
+
+button:hover {
+    background: #A3B394;
+    color: #263128;
+}
+
+/* Footer */
+.footer {
+    background: #F7F8F2;
+}
