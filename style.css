@@ -373,3 +373,111 @@ body.quiz-page .detail-tile:hover {
     transform: none !important;
     box-shadow: 0 5px 16px #2E3A2F10 !important;
 }
+
+/* ===== QUIZ PAGE: ORIGINAL DESIGN ===== */
+
+body.quiz-page .box {
+    background: #7A8063 !important;
+    background-image: none !important;
+}
+
+body.quiz-page .result {
+    background: #7A8063 !important;
+    background-image: none !important;
+}
+
+body.quiz-page .card {
+    background: #A3AB8F !important;
+    background-image: none !important;
+    border: 1px solid #A3AB8F !important;
+    border-radius: 16px !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
+
+body.quiz-page .card:hover {
+    transform: none !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
+
+body.quiz-page .option {
+    background: #7A8063 !important;
+    color: #FFFFFF !important;
+}
+
+body.quiz-page .option:hover,
+body.quiz-page .option.selected {
+    background: #A3AB8F !important;
+    color: #263128 !important;
+}
+
+/* ===== QUIZ PAGE: ORIGINAL DESIGN ===== */
+
+body.quiz-page .box {
+    background: #7A8063 !important;
+    background-image: none !important;
+}
+
+body.quiz-page .result {
+    background: #7A8063 !important;
+    background-image: none !important;
+}
+
+body.quiz-page .card {
+    background: #A3AB8F !important;
+    background-image: none !important;
+    border: 1px solid #A3AB8F !important;
+    border-radius: 16px !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
+
+body.quiz-page .card:hover {
+    transform: none !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
+
+body.quiz-page .option {
+    background: #7A8063 !important;
+    color: #FFFFFF !important;
+}
+
+body.quiz-page .option:hover,
+body.quiz-page .option.selected {
+    background: #A3AB8F !important;
+    color: #263128 !important;
+}
+
+/* ===== QUIZ PAGE: ORIGINAL DESIGN ===== */
+
+body.quiz-page .box {
+    background: #7A8063 !important;
+    background-image: none !important;
+}
+
+body.quiz-page .result {
+    background: #7A8063 !important;
+    background-image: none !important;
+}
+
+body.quiz-page .card {
+    background: #A3AB8F !important;
+    background-image: none !important;
+    border: 1px solid #A3AB8F !important;
+    border-radius: 16px !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
+
+body.quiz-page .card:hover {
+    transform: none !important;
+    box-shadow: 0 5px 16px #2E3A2F10 !important;
+}
+
+body.quiz-page .option {
+    background: #7A8063 !important;
+    color: #FFFFFF !important;
+}
+
+body.quiz-page .option:hover,
+body.quiz-page .option.selected {
+    background: #A3AB8F !important;
+    color: #263128 !important;
+}
