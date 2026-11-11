@@ -235,3 +235,34 @@ button:hover {
         padding: 16px !important;
     }
 }
+
+/* ===== FORCE SAGE GRADIENT ON CAREER & UNIVERSITY CARDS ===== */
+
+.card,
+.grid .card,
+.grid > *,
+.details-page > *,
+.detail-tile,
+.career-details,
+.career-card,
+.university-card,
+.metric-card {
+    background: linear-gradient(
+        145deg,
+        #A3AB8F 0%,
+        #C9CEBA 50%,
+        #F3F3EA 100%
+    ) !important;
+
+    border: 1px solid #D8DED2 !important;
+    border-radius: 22px !important;
+
+    box-shadow: 0 8px 25px rgba(46,58,47,0.10) !important;
+}
+
+/* Hover effect */
+.grid > *:hover,
+.details-page > *:hover {
+    transform: translateY(-5px);
+    transition: 0.3s ease;
+}
