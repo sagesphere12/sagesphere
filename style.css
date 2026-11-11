@@ -197,7 +197,7 @@ button:hover {
 .detail-tile:hover {
     transform: translateY(-5px);
 
-    box-shadow: 0 12px 30px rgba(46, 58, 47, 0.13);
+   
 }
 
 /* Card headings */
@@ -468,9 +468,7 @@ body.quiz-page .card {
 
 body.quiz-page .card:hover {
     transform: none !important;
-    box-shadow: 0 5px 16px #2E3A2F10 !important;
-}
-
+  
 body.quiz-page .option {
     background: #7A8063 !important;
     color: #FFFFFF !important;
