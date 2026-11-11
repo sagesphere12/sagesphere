@@ -266,3 +266,70 @@ button:hover {
     transform: translateY(-5px);
     transition: 0.3s ease;
 }
+
+/* ===== SAGE PREMIUM GRADIENT CARDS ===== */
+
+/* Career and University cards */
+.card,
+.detail-tile,
+.stat {
+    background: linear-gradient(
+        145deg,
+        #A3AB8F 0%,
+        #C8CEBB 45%,
+        #F3F3EB 100%
+    ) !important;
+
+    border: 1px solid #D8DED2;
+    border-radius: 22px !important;
+
+    padding: 22px;
+
+    box-shadow: 0 8px 25px rgba(46, 58, 47, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+/* Hover animation */
+.card:hover,
+.detail-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(46, 58, 47, 0.15);
+}
+
+/* Card headings */
+.card h3,
+.detail-tile h2 {
+    color: #263128 !important;
+    font-weight: 750;
+}
+
+/* Card descriptions */
+.card p,
+.detail-tile p {
+    color: #465346 !important;
+    line-height: 1.7;
+}
+
+/* Category tags */
+.tag {
+    background: #7A8063 !important;
+    color: #FFFFFF !important;
+    border-radius: 20px;
+    padding: 5px 11px;
+}
+
+/* Buttons inside cards */
+.card button,
+.detail-tile button {
+    border-radius: 12px;
+}
+
+/* Responsive spacing */
+@media (max-width: 760px) {
+    .card,
+    .detail-tile {
+        padding: 17px;
+        border-radius: 18px !important;
+    }
+}
