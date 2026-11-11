@@ -478,4 +478,21 @@ body.quiz-page .option:hover,
 body.quiz-page .option.selected {
     background: #A3AB8F !important;
     color: #263128 !important;
+}/* QUIZ PAGE ONLY — REMOVE SHADOWS */
+body.quiz-page .card,
+body.quiz-page .stat,
+body.quiz-page .detail-tile,
+body.quiz-page .box,
+body.quiz-page .panel,
+body.quiz-page .result,
+body.quiz-page .metric-card {
+    box-shadow: none !important;
+}
+
+body.quiz-page .card:hover,
+body.quiz-page .stat:hover,
+body.quiz-page .detail-tile:hover,
+body.quiz-page .box:hover,
+body.quiz-page .panel:hover {
+    box-shadow: none !important;
 }
