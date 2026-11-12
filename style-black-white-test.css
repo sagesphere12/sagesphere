@@ -1,0 +1,231 @@
+/*
+  SAGE SPHERE — PURE BLACK & WHITE EXPERIMENT
+  Add this file AFTER style.css on each page.
+  To restore the original look, remove the link to this file.
+*/
+
+/* Core palette */
+:root {
+  --bg: #000000 !important;
+  --panel: #000000 !important;
+  --panel2: #000000 !important;
+  --green: #FFFFFF !important;
+  --green2: #FFFFFF !important;
+  --ink: #FFFFFF !important;
+  --muted: #FFFFFF !important;
+  --brown: #FFFFFF !important;
+  --line: #FFFFFF !important;
+  --cream: #000000 !important;
+  --sage: #000000 !important;
+  --olive: #000000 !important;
+  --charcoal: #000000 !important;
+}
+
+/* Page foundation */
+html,
+body {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+}
+
+body,
+body * {
+  color-scheme: dark;
+}
+
+/* Remove old green / cream / gradient surfaces */
+.top,
+nav,
+header,
+footer,
+.footer,
+.panel,
+.card,
+.box,
+.stat,
+.chat,
+.chathead,
+.chatbody,
+.compose,
+.result,
+.career-details,
+.detail-tile,
+.metric-card,
+.compare-table th,
+.compare-table td,
+section,
+article {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+/* Keep cards distinct using white outlines */
+.panel,
+.card,
+.box,
+.stat,
+.chat,
+.result,
+.career-details,
+.detail-tile,
+.metric-card,
+.compare-table th,
+.compare-table td {
+  border: 1px solid #FFFFFF !important;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+strong,
+b,
+small,
+label,
+li,
+th,
+td,
+.eyebrow,
+.small,
+.brand,
+.links a,
+.back-link,
+.card h3,
+.card p,
+.card a,
+.card .small,
+.stat strong,
+.detail-tile h2,
+.detail-tile p,
+.career-details h4,
+.metric-card span,
+.metric-card strong,
+.metric-card small {
+  color: #FFFFFF !important;
+}
+
+/* Links */
+a,
+a:visited,
+.card a,
+.back-link {
+  color: #FFFFFF !important;
+  text-decoration-color: #FFFFFF !important;
+}
+
+/* White primary buttons with black text */
+button,
+.button-link,
+.chat-launch {
+  background: #FFFFFF !important;
+  color: #000000 !important;
+  border: 1px solid #FFFFFF !important;
+  box-shadow: none !important;
+}
+
+button *,
+.button-link *,
+.chat-launch * {
+  color: #000000 !important;
+}
+
+button:hover,
+.button-link:hover,
+.chat-launch:hover {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFFFF !important;
+}
+
+button:hover *,
+.button-link:hover *,
+.chat-launch:hover * {
+  color: #FFFFFF !important;
+}
+
+/* Secondary buttons, quiz options and selectable controls */
+.secondary,
+.option,
+.option.selected,
+.option:hover {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFFFF !important;
+}
+
+/* Inputs */
+input,
+select,
+textarea,
+.field,
+.search,
+.compose input {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFFFF !important;
+  caret-color: #FFFFFF !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #FFFFFF !important;
+  opacity: 0.75 !important;
+}
+
+/* Chat */
+.chathead,
+.chathead b,
+.bubble,
+.bubble.me {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFFFF !important;
+}
+
+/* Tags, progress and tables */
+.tag,
+.progress,
+.progress span {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 1px solid #FFFFFF !important;
+}
+
+.compare-table {
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important;
+}
+
+/* Logo image: remove green tint and make it monochrome */
+.brand img {
+  filter: grayscale(1) brightness(0) invert(1) !important;
+}
+
+/* Focus indicators remain visible */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #FFFFFF !important;
+  outline-offset: 3px !important;
+}
+
+/* Keep all decorative separators monochrome */
+hr,
+.divider,
+.footer,
+.top {
+  border-color: #FFFFFF !important;
+}
+
+/* Preserve existing page layouts and responsive rules.
+   This file changes colours only. */
