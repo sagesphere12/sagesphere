@@ -1,0 +1,54 @@
+
+/* SAGESPHERE - BLACK EXPERIMENT */
+
+html, body {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+body {
+  color-scheme: dark;
+}
+
+header, nav, footer,
+.top, .navbar {
+  background: #000000 !important;
+  border-color: #292929 !important;
+}
+
+h1, h2, h3, h4, p, label {
+  color: #ffffff !important;
+}
+
+section, article,
+.card, .panel, .box,
+.stat, .chat, .detail-tile {
+  background: #0b0b0b !important;
+  color: #ffffff !important;
+  border-color: #292929 !important;
+  box-shadow: none !important;
+}
+
+input, textarea, select {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #444444 !important;
+}
+
+button, .button-link {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #ffffff !important;
+}
+
+button:hover, .button-link:hover {
+  background: #cccccc !important;
+}
+
+a {
+  color: #ffffff !important;
+}
+
+::placeholder {
+  color: #999999 !important;
+}
