@@ -1,50 +1,50 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Home | SAGE</title>
 <link rel="stylesheet" href="style.css">
-<meta name="theme-color" content="#dde4d2">
 
 <style>
 #fullscreenBtn {
   position: fixed;
-  top: 15px;
-  right: 15px;
+  left: 20px;
+  bottom: 20px;
   z-index: 999999;
-  background: #2e3a2f;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #7A8063;
+  border-radius: 50%;
+  background: #2E3A2F;
   color: white;
-  border: none;
-  padding: 12px 18px;
-  border-radius: 30px;
+  font-size: 24px;
+  line-height: 1;
   cursor: pointer;
-  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.16);
 }
-
 #fullscreenBtn:hover {
-  background: #7a8063;
-}
-
-:fullscreen {
-  overflow-y: auto;
-  background: #dde4d2;
+  background: #7A8063;
 }
 </style>
 </head>
 
 <body>
 
-<button id="fullscreenBtn" onclick="toggleFullScreen()">
-⛶ Full Screen
-</button>
+<button id="fullscreenBtn"
+type="button"
+onclick="toggleFullScreen()"
+aria-label="Enter full screen"
+title="Full screen">⛶</button>
 
 <header class="top">
 <nav class="wrap">
 <a class="brand" href="index.html">
-<img src="logo.png" alt="SAGE" onerror="this.style.display='none'">
-SAGE
+<img src="logo.png" alt="" onerror="this.style.display='none'">SAGE
 </a>
 <div class="links">
 <a href="index.html">Home</a>
@@ -70,14 +70,20 @@ SAGE
 </div>
 
 <aside class="panel">
-<div class="sage-figures">
-<svg viewBox="0 0 260 112">
-<g fill="none" stroke="#2E3A2F" stroke-width="3.2">
+<div class="sage-figures" aria-hidden="true">
+<svg viewBox="0 0 260 112" role="img" focusable="false">
+<g fill="none" stroke="#2E3A2F" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter">
 <circle cx="61" cy="22" r="10"/>
 <path d="M61 34V67M61 43L43 56M61 43L78 53M61 67L47 91M61 67L76 91"/>
 <circle cx="151" cy="25" r="10"/>
 <path d="M151 37V68M151 46L133 58M151 46L169 57M151 68L138 91M151 68L166 91"/>
 </g>
+<g fill="none" stroke="#7A8063" stroke-width="3" stroke-linecap="square">
+<path d="M91 57h20v27H91zM95 63h12M95 69h12M95 75h8"/>
+<path d="M188 18l5 -5M191 26h8M185 10V3"/>
+<path d="M24 99h176"/>
+</g>
+<path d="M210 78l4 8 9 1-7 6 2 9-8-5-8 5 2-9-7-6 9-1z" fill="#A3AB8F"/>
 </svg>
 </div>
 <div class="eyebrow">Your journey starts here</div>
@@ -113,21 +119,21 @@ SAGE
 <article class="card">
 <span class="tag">03 · Research</span>
 <h3>Universities</h3>
-<p>Browse Indian and international universities.</p>
+<p>Browse Indian and international universities and visit official websites.</p>
 <a href="universities.html">Explore universities →</a>
 </article>
 
 <article class="card">
 <span class="tag">04 · Compare</span>
 <h3>Compare careers</h3>
-<p>Shortlist up to three roles and compare them.</p>
+<p>Shortlist up to three roles and compare their focus and useful subjects.</p>
 <a href="compare.html">Compare careers →</a>
 </article>
 
 <article class="card">
 <span class="tag">05 · Learn</span>
 <h3>SAGE blog</h3>
-<p>Read guides for career decisions and college research.</p>
+<p>Read approachable guides for career decisions and college research.</p>
 <a href="blog.html">Read the blog →</a>
 </article>
 
@@ -164,88 +170,182 @@ SAGE
 function toggleFullScreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().catch(() => {
-      alert("Full screen is not supported by this browser.");
+      alert('Full-screen mode is not available in this browser.');
     });
   } else {
     document.exitFullscreen();
   }
 }
+</script>
 
-document.addEventListener("fullscreenchange", () => {
-  document.getElementById("fullscreenBtn").textContent =
-    document.fullscreenElement ? "✕ Exit Full Screen" : "⛶ Full Screen";
-});
+<script src="data.js"></script>
+<script>
+const chat=document.getElementById('chat'),
+body=document.getElementById('cb');
 
-const chat = document.getElementById('chat');
-const body = document.getElementById('cb');
+document.getElementById('toggle').onclick=()=>chat.classList.toggle('open');
+document.getElementById('close').onclick=()=>chat.classList.remove('open');
 
-document.getElementById('toggle').onclick =
-  () => chat.classList.toggle('open');
-
-document.getElementById('close').onclick =
-  () => chat.classList.remove('open');
-
-function bubble(t, me = false) {
-  const d = document.createElement('div');
-  d.className = 'bubble' + (me ? ' me' : '');
-  d.textContent = t;
-  body.appendChild(d);
-  body.scrollTop = body.scrollHeight;
+function bubble(t,me=false){
+let d=document.createElement('div');
+d.className='bubble'+(me?' me':'');
+d.textContent=t;
+body.appendChild(d);
+body.scrollTop=body.scrollHeight;
 }
 
-document.getElementById('form').onsubmit = e => {
-  e.preventDefault();
-  const i = document.getElementById('msg');
-  const v = i.value.trim();
-  if (!v) return;
+function reply(t){
+const sageText=String(t||'').trim();
+const sageLower=sageText.toLowerCase();
 
-  bubble(v, true);
-  i.value = '';
+if(/^(hey+|hi+|hello|heyy|yo|sup)[!. ]*$/.test(sageLower)){
+bubble('Heyyy! 😊 What are you thinking about today — exploring careers, choosing subjects, finding courses, or just figuring out what might suit you?');
+return;
+}
 
-  const loading = document.createElement('div');
-  loading.className = 'bubble';
-  loading.textContent = 'One sec — let me think…';
-  body.appendChild(loading);
+if(/\b(i don't know|not sure|confused|no idea|lost)\b/.test(sageLower)){
+bubble('That’s completely okay — you don’t need to have your whole future figured out right now. 💛 Let’s make it smaller: which school subjects feel easiest or most interesting, and do you prefer working with people, ideas, technology, creative projects, or practical hands-on tasks?');
+return;
+}
 
-  fetch('/api/chat', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({message: v})
-  })
-  .then(r => r.json())
-  .then(data => {
-    loading.remove();
-    bubble(data.reply || 'Tell me a little more.');
-  })
-  .catch(() => {
-    loading.remove();
-    bubble("I'm here to help you explore careers and universities!");
-  });
+if(/\b(law|lawyer|legal|judge|nlsiu)\b/.test(sageLower)){
+bubble('Heyyy! Law has lots of paths beyond courtroom practice: corporate law, criminal law, cyber law, human rights, environmental law, policy, legal research, and the judiciary. In India, an integrated B.A. LL.B. after Class 12 is one common route; a 3-year LL.B. after a bachelor’s degree is another. What draws you to law — debating, helping people, solving complex problems, or understanding how society works?');
+return;
+}
+
+if(/\b(computer|coding|software|ai|technology|cybersecurity)\b/.test(sageLower)){
+bubble('Tech has several different flavors: software development, AI and data, cybersecurity, UX design, cloud systems, and hardware. You can try a small coding project or beginner data/design activity before committing. Are you more interested in building apps, investigating problems, working with data, or designing things people use?');
+return;
+}
+
+if(/\b(university|universities|college|course|courses|admission|fees|scholarship)\b/.test(sageLower)){
+bubble('Let’s compare colleges by the exact program, eligibility, entrance route, total tuition and living costs, scholarships, location, internships, and student support. I can help make a shortlist, but fees and admission rules should be checked against the current official course page. Which course and country or state are you considering?');
+return;
+}
+
+const m=t.toLowerCase().trim();
+let r;
+
+if(/\b(i wanna die|i want to die|want to kill myself|suicidal|end my life|hurt myself|self harm)\b/.test(m)){
+r="Hey, I'm really glad you told me. I'm taking this seriously, and your safety matters more than career questions right now. Please go to a trusted adult or someone nearby right now and tell them what's happening. You deserve support.";
+}
+else if(/\b(devastated|heartbroken|upset|sad|depressed|overwhelmed|rough day|feel awful)\b/.test(m)){
+r="Oh no, I'm sorry you're feeling this way. 💛 Want to tell me what happened? I'm here to listen.";
+}
+else if(/\b(just checking|just testing|testing you|i was joking|just kidding|not serious)\b/.test(m)){
+r="Haha, fair enough 😄 Thanks for testing me! What do you want to try next?";
+}
+else if(/\b(okay|ok|you know what|guess what|listen|hey|heyy|hello|hi|hii|yo)\b/.test(m)){
+r="Heyyy! 😊 What's on your mind? We can talk careers and college, or you can just tell me what's up.";
+}
+else if(/\blaw\b|lawyer|legal|judge|court|criminal justice/.test(m)){
+r="Heyyy! Law is a broad field, including criminal law, corporate law, cyber law, human rights, environmental law, legal research, and the judiciary. What part sounds most interesting to you?";
+}
+else if(/doctor|medicine|medical|healthcare|nurs/.test(m)){
+r="Healthcare has lots of paths, from medicine and nursing to physiotherapy, pharmacy, psychology, and lab science. Are you most interested in treating patients, understanding the human body, or doing research?";
+}
+else if(/journal|writing|writer|media|news/.test(m)){
+r="If writing and asking questions are your thing, journalism could be worth exploring. Journalists research stories, interview people, verify facts, and report through articles, video, audio, or digital media. Which sounds more like you?";
+}
+else if(/engineer|coding|program|computer|technology|software|\bai\b/.test(m)){
+r="Tech is a big space: software, cybersecurity, data, AI, electronics, and several kinds of engineering. Which sounds fun to you?";
+}
+else if(/university|college|admission|degree|study|course|fees|scholarship/.test(m)){
+r="When comparing colleges, check the exact course, eligibility, total fees, scholarships, accreditation, internships, location, and student support. Which course or country are you considering?";
+}
+else if(/salary|pay|earn|job demand|future scope/.test(m)){
+r="Pay and job demand depend on location, experience, qualification, and the specific role. Which career and country are you thinking about?";
+}
+else if(/quiz|test|result|recommend/.test(m)){
+r="The career quiz is a starting point, not a decision-maker. Your result should help you spot patterns in what you enjoy.";
+}
+else if(/thank/.test(m)){
+r="Anytime! 😊 I'm happy to help.";
+}
+else if(/confused|don't know|dont know|not sure|no idea/.test(m)){
+r="That's completely okay — you don't need to have it all figured out yet. Tell me one thing you usually enjoy.";
+}
+else{
+r="I'm listening! Tell me a little more about what's on your mind. We can explore careers and college together.";
+}
+bubble(r);
+}
+
+document.getElementById('form').onsubmit=e=>{
+e.preventDefault();
+let i=document.getElementById('msg'),
+v=i.value.trim();
+if(v){
+bubble(v,true);
+i.value='';
+replyAI(v);
+}
 };
 
-document.getElementById('mic').onclick = () => {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) return bubble('Voice input is not supported.');
-  const r = new SR();
-  r.lang = 'en-IN';
-  r.onresult = e => {
-    document.getElementById('msg').value =
-      e.results[0][0].transcript;
-  };
-  r.start();
+document.getElementById('mic').onclick=()=>{
+let SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR){
+bubble('Voice input is not supported in this browser. Please type instead.');
+return;
+}
+let r=new SR();
+r.lang='en-IN';
+r.onresult=e=>document.getElementById('msg').value=e.results[0][0].transcript;
+r.start();
 };
 
-document.getElementById('listen-reply').onclick = () => {
-  const last = Array.from(body.querySelectorAll('.bubble'))
-    .filter(el => !el.classList.contains('me')).pop();
+async function replyAI(t){
+const loading=document.createElement('div');
+loading.className='bubble';
+loading.textContent='One sec — let me think…';
+body.appendChild(loading);
+body.scrollTop=body.scrollHeight;
 
-  if (last && 'speechSynthesis' in window) {
-    speechSynthesis.cancel();
-    speechSynthesis.speak(
-      new SpeechSynthesisUtterance(last.textContent)
-    );
-  }
+try{
+const history=Array.from(body.querySelectorAll('.bubble'))
+.filter(el=>el!==loading)
+.slice(-8)
+.map(el=>({
+role:el.classList.contains('me')?'user':'assistant',
+content:el.textContent
+}));
+
+const res=await fetch('/api/chat',{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({message:t,history})
+});
+
+const data=await res.json();
+if(!res.ok) throw new Error(data.error||'AI is not available');
+
+loading.remove();
+bubble(data.reply||'Tell me a little more.');
+
+}catch(err){
+loading.remove();
+try{
+reply(t);
+}catch(localErr){
+bubble('I’m here to help you explore options. Tell me what subjects you enjoy.');
+}
+console.info('SAGE is using its built-in guide because the AI service is unavailable.');
+}
+}
+
+const listenReplyButton=document.getElementById('listen-reply');
+
+if(listenReplyButton){
+listenReplyButton.onclick=()=>{
+const last=Array.from(body.querySelectorAll('.bubble'))
+.filter(el=>!el.classList.contains('me')).pop();
+
+if(last&&'speechSynthesis'in window){
+speechSynthesis.cancel();
+speechSynthesis.speak(new SpeechSynthesisUtterance(last.textContent));
+}
 };
+}
 </script>
 
 </body>
