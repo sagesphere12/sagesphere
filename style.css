@@ -498,3 +498,42 @@ body.quiz-page .panel:hover {
 }
 <body class="quiz-page">
  
+/* SAGE CAREER QUIZ - LIGHTER BOX */
+
+body.quiz-page .box {
+    background: #E5E9DC !important;
+    background-image: none !important;
+    border: 1px solid #D2D9C7 !important;
+    border-radius: 22px !important;
+    box-shadow: none !important;
+}
+
+body.quiz-page .box h1,
+body.quiz-page .box h2,
+body.quiz-page .box h3,
+body.quiz-page .box p,
+body.quiz-page .box strong {
+    color: #354333 !important;
+}
+
+body.quiz-page .option {
+    background: #F7F8F3 !important;
+    color: #354333 !important;
+    border: 1px solid #A3AB8F !important;
+}
+
+body.quiz-page .option:hover,
+body.quiz-page .option.selected {
+    background: #D2DCC8 !important;
+    color: #263128 !important;
+}
+
+body.quiz-page .progress {
+    background: #CBD3C1 !important;
+}
+
+body.quiz-page .progress span {
+    background: #7A8063 !important;
+}
+
+ 
